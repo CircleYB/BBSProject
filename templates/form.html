@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}投稿{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-4" style="background-color : #AAEEDD">
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <div class="form-group">
+                        {{ form.poster_name.label }}
+                        {{ form.poster_name(class="form-control") }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    {% if form.poster_name.errors %}
+                        <div>
+                            {% for error in form.poster_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <div class="form-group">
+                        {{ form.post_contents.label }}
+                        {{ form.post_contents(rows='10', class="form-control") }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <div>
+                        {% for error in form.post_contents.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 offset-md-4 text-nowrap">
+                    <div class="form-group">
+                        {{ form.delete_password.label }}<span class="form-text text-muted" style="font-size:smaller;">※投稿後に削除したいときに使います</span>
+                        {{ form.delete_password(class="form-control") }}
+                    </div>
+                    <div>
+                        {% for error in form.delete_password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4" style="background-color : #AAEEDD">
+                    <input class="btn btn-outline-secondary float-left" type="button" onclick="history.back()" value="戻る">
+                    {{ form.submit(class_="btn btn-primary float-right") }}
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock %}
