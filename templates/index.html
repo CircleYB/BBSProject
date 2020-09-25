@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container" style="background-color : #AAEEDD">
+        <div class="text-center">
+            <div class="col-md-4 offset-md-4">
+                {% for thread in threads %}
+                    <div class="m-3">
+                        <a href="ke?ke_id={{ thread.id }}&article_number=0">{{ thread.id }}.{{ thread.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

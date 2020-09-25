@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ ke_name }}{% endblock %}
+
+{% block content %}
+
+    <div class="container text-center" style="background-color : #AAEEDD">
+
+        <div class="col-md-6 offset-md-3">
+
+            <div class="row">
+                <a href="/"><img src="/static/images/LaunchScreen.png" alt="gazoo" class="img-thumbnail float-left" width="30%" height="30%"></a>
+            </div>
+            <p>{{ ke_name }}</p>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn">Top画面</button>
+                <button type="button" id="button_bottom" class="btn btn-secondary">▼ページ下へ</button>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4 text-center">
+                    <button class="btn btn-primary m-5" onclick="location.href='/form?ke_id={{ ke_id }}&article_number=0'">投稿</button>
+                </div>
+            </div>
+
+            {% if articles.items | length > 0 %}
+
+                {% for article in articles.items %}
+
+                    <div class="border-bottom border-Secondary mb-3 pb-3">
+
+                        <div class="row">
+                            <div class="col-md-4 text-left">
+                                <p class="h6">{{ loop.index0 + 1 }}. 投稿者:{{ article.poster_name }}</p>
+                            </div>
+                            <div class="col-md-8 text-left">
+                                <p class="h6">投稿日:{{ article.post_time.strftime('%Y年%m月%d日(%a)%H時%M分%S秒') }}
+                                    <a href="/form?ke_id={{ ke_id }}&article_number={{ loop.index0 + 1 }}">▼返信</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 text-left">
+                                {% if '>>' in article.post_contents %}
+                                    <p>{{ article.post_contents | add_anchor(ke_id) | cr }}</p>
+                                {% else %}
+                                    <p>{{ article.post_contents | cr }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <p>投稿がありません</p>
+            {% endif %}
+
+            <p>{{ articles.page }} / {{ articles.pages }}</p>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if articles.has_prev %}
+                        <li class="page-item"><a class="page-link" href="{{ url_for('ke', page=articles.prev_num, ke_id=ke_id) }}">|&lt;</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ url_for('ke', page=articles.prev_num, ke_id=ke_id) }}">前へ&lt;</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link btn disabled" href="#">|&lt;</a></li>
+                        <li class="page-item"><a class="page-link btn disabled" href="#">前へ&lt;</a></li>
+                    {% endif %}
+
+                    {% if articles.has_next %}
+                        <li class="page-item"><a class="page-link" href="{{ url_for('ke', page=articles.next_num, ke_id=ke_id) }}">次へ&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ url_for('ke', page=articles.next_num, ke_id=ke_id) }}">&gt;|</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link btn disabled" href="#">次へ&gt;</a></li>
+                        <li class="page-item"><a class="page-link btn disabled" href="#">&gt;|</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <div class="row">
+                <div class="col-md-4 offset-md-4 text-center">
+                    <button class="btn btn-primary m-5" onclick="location.href='/form?ke_id={{ ke_id }}&article_number=0'">投稿</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
