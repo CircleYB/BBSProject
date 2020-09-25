@@ -6,17 +6,21 @@
   <component name="NewModuleRootManager">
     <content url="file://$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/flask_bootstrap" />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="jquery-3.3.1.slim" level="application" />
     <orderEntry type="library" name="popper.js" level="application" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="C:\Users\te2y\PycharmProjects\BBSProject\setup.py" />
+    <option name="versionSpecifier" value="Strong equality (==x.y.z)" />
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/templates" />
+        <option value="$MODULE_DIR$/../TestProject/templates" />
         <option value="$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/flask_bootstrap/templates" />
       </list>
     </option>
